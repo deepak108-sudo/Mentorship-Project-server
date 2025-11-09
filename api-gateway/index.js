@@ -1,10 +1,11 @@
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
+dotenv.config();
+
 import { createProxyMiddleware } from "http-proxy-middleware";
 
 const app = express();
-
-console.log("I am");
 
 // Allow frontend (Vite) access
 app.use(
@@ -85,7 +86,7 @@ app.use(
 );
 
 // Start Gateway
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`API Gateway running on http://localhost:${PORT}`);
 });
