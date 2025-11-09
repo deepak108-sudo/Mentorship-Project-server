@@ -45,7 +45,9 @@ app.use(
   "/api/student",
   createProxyMiddleware({
     // ✅ FIX: Use the public, fully qualified URL for the Student Service.
-    target: "https://mentorship-project-server-1.onrender.com",
+    target:
+      "https://mentorship-project-server-1.onrender.com/api/student" ||
+      "http://localhost:5000/api/student",
     changeOrigin: true,
     timeout: 15000, // Increased timeout slightly for better waking tolerance
     proxyTimeout: 15000,
