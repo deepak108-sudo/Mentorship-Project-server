@@ -47,10 +47,6 @@ app.use(
     // ✅ FIX: Use the public, fully qualified URL for the Student Service.
     target: "https://mentorship-project-server-1.onrender.com",
     changeOrigin: true,
-    // PATH REWRITE: This strips '/api/student' so the backend receives only '/register'.
-    pathRewrite: {
-      "^/api/student": "",
-    },
     timeout: 15000, // Increased timeout slightly for better waking tolerance
     proxyTimeout: 15000,
 
