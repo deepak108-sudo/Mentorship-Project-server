@@ -10,7 +10,7 @@ const app = express();
 // Allow frontend (Vite) access
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://client-944o.vercel.app" || "http://localhost:5173",
     credentials: true,
   })
 );
