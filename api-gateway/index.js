@@ -31,7 +31,7 @@ app.get("/", (req, res) => {
 
 // Health check route (optional)
 app.get("/api/ping", express.json(), (req, res) => {
-  res.send("Gateway is live ✅");
+  res.send("Gateway is live ");
 });
 
 // Log incoming requests (for debugging)
