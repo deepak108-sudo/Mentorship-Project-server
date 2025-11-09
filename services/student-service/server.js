@@ -14,6 +14,15 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+//get info.
+app.get('/',(req,res)=>{
+  res.status(200).json({
+    status: "We are live bidu",
+    message:"Hello",
+    time:new Date().toISOString
+  })
+});
+
 // --Request logging middleware (important for debugging)
 app.use((req, res, next) => {
   console.log(`[Student-Service] ${req.method} ${req.url}`);

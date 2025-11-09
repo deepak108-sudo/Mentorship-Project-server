@@ -24,7 +24,7 @@ app.use(
 app.get("/", (req, res) => {
   res.status(200).json({
     status: "Gateway Service Operational",
-    message: "Access proxy routes at /api/<service>",
+    message: "Access proxy routes at /api/gateway",
     time: new Date().toISOString(),
   });
 });
