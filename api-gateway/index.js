@@ -44,11 +44,15 @@ app.use((req, res, next) => {
 app.use(
   "/api/student",
   createProxyMiddleware({
-    // 3. HARDCODED TARGET FIX: Using the internal Render service name
-    target: "http://mentorship-project-server-1:5000",
+    // ✅ FIX: Use the public, fully qualified URL for the Student Service.
+    target: "https://mentorship-project-server-1.onrender.com",
     changeOrigin: true,
-    timeout: 10000,
-    proxyTimeout: 10000, // Removed the pathRewrite function as it was likely incorrect.
+    // PATH REWRITE: This strips '/api/student' so the backend receives only '/register'.
+    pathRewrite: {
+      "^/api/student": "",
+    },
+    timeout: 15000, // Increased timeout slightly for better waking tolerance
+    proxyTimeout: 15000,
 
     onError: (err, req, res) => {
       console.error(`[Gateway] Proxy error:`, err);
@@ -57,7 +61,7 @@ app.use(
           error: "Gateway proxy error",
           message: err.message,
           details:
-            "Cannot connect to student service. Check Render internal service name.",
+            "Cannot connect to student service. Check public URL and ensure service is awake.",
         });
       }
     },
@@ -68,11 +72,13 @@ app.use(
 app.use(
   "/api/mentor",
   createProxyMiddleware({
-    // 4. HARDCODED TARGET FIX: Using the internal Render service name
-    target: "http://<your-mentor-service-name>:5003", // NOTE: Replace <your-mentor-service-name>
+    // Target: Internal Render service name - Placeholder still needs replacement
+    target: "http://<your-mentor-service-name>:5003",
     changeOrigin: true,
+    // Note: This pathRewrite seems incorrect and should probably be stripped like the student one.
+    // Assuming your mentor service expects paths without '/api/mentor'
     pathRewrite: {
-      "^/api/mentor": "/api/mentor",
+      "^/api/mentor": "",
     },
   })
 );
