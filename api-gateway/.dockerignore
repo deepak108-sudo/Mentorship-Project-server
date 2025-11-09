@@ -1,0 +1,12 @@
+# .dockerignore
+
+# Ignore locally installed dependencies
+node_modules
+# ALWAYS ignore local environment files containing secrets/configurations
+.env
+# Ignore development logs and build artifacts
+npm-debug.log
+/dist
+# Ignore source control files
+.git
+.gitignore
